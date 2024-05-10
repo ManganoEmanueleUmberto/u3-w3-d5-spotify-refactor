@@ -1,13 +1,24 @@
 import { Col, Container, Image, NavLink, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { canRender } from "./SongCard";
+import { isLiked } from "../redux/actions";
+import { useEffect } from "react";
 
 const Player = () => {
   const song = useSelector((state) => state.mainPage.singleTrack);
   const liked = useSelector((state) => state.mainPage.liked);
-  const dispatch = useDispatch();
+  let like = false;
+  console.log(liked);
 
-  const handleClick = () => {};
+  liked.map((songLike) => {
+    console.log(songLike);
+    if (songLike === song.title_short) {
+      like = true;
+    }
+    return like;
+  });
+
+  const dispatch = useDispatch();
 
   return (
     <Container fluid className="fixed-bottom bg-container pt-1">
@@ -19,10 +30,20 @@ const Player = () => {
             <></>
           )}
 
-          {liked ? (
-            <i class="bi bi-heart-fill text-secondary fs-5 ms-5 my-auto " onClick={handleClick}></i>
+          {like ? (
+            <i
+              class="bi bi-heart-fill text-secondary fs-5 ms-5 my-auto "
+              onClick={() => {
+                dispatch(isLiked(song.title_short));
+              }}
+            ></i>
           ) : (
-            <i className="bi bi-heart text-secondary fs-5 ms-5 my-auto "></i>
+            <i
+              className="bi bi-heart text-secondary fs-5 ms-5 my-auto "
+              onClick={() => {
+                dispatch(isLiked(song.title_short));
+              }}
+            ></i>
           )}
 
           <Row className="w-100 h-100 flex-column justify-content-center align-items-center">

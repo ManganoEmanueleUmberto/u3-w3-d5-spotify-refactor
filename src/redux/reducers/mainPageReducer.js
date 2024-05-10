@@ -5,7 +5,7 @@ const initialState = {
   pop: [],
   hipPop: [],
   singleTrack: [],
-  liked: false,
+  liked: [],
 };
 
 const MainPageReducer = (state = initialState, action) => {
@@ -38,7 +38,7 @@ const MainPageReducer = (state = initialState, action) => {
     case LIKED:
       return {
         ...state,
-        liked: action.payload,
+        liked: [...state.liked, action.payload],
       };
     default:
       return {
