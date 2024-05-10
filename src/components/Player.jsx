@@ -1,25 +1,26 @@
 import { Col, Container, Image, NavLink, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { canRender } from "./SongCard";
 
 const Player = () => {
   const song = useSelector((state) => state.mainPage.singleTrack);
   const liked = useSelector((state) => state.mainPage.liked);
-  console.log(liked);
+  const dispatch = useDispatch();
 
-  console.log(song);
+  const handleClick = () => {};
+
   return (
     <Container fluid className="fixed-bottom bg-container pt-1">
       <Row className="h-100 ">
         <Col lg={{ span: 10, offset: 2 }} className="d-flex">
           {canRender ? (
-            <Image src={song.album.cover_medium} alt="album cover" width={80} height={60} className="mt-2" />
+            <Image src={song.album.cover_medium} alt="album cover" width={75} height={65} className="mt-2" />
           ) : (
             <></>
           )}
 
           {liked ? (
-            <i class="bi bi-heart-fill text-secondary fs-5 ms-5 my-auto "></i>
+            <i class="bi bi-heart-fill text-secondary fs-5 ms-5 my-auto " onClick={handleClick}></i>
           ) : (
             <i className="bi bi-heart text-secondary fs-5 ms-5 my-auto "></i>
           )}
