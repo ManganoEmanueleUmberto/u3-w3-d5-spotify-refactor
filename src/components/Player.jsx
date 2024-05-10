@@ -26,7 +26,7 @@ const Player = () => {
           )}
 
           <Row className="w-100 h-100 flex-column justify-content-center align-items-center">
-            <Col xs={6} md={4} className="playerControls ">
+            <Col xs={6} md={4} className="playerControls me-5">
               <h2 className="text-white fs-5 my-0 text-center">{song.title_short}</h2>
               <div className="d-flex">
                 <NavLink href="#"></NavLink>
