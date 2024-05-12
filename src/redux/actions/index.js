@@ -4,6 +4,7 @@ export const GET_MUSIC_HIP_POP = "GET_MUSIC_HIP_POP";
 export const TRACK = "TRACK";
 export const SEARCH = "SEARCH";
 export const LIKED = "LIKED";
+export const NOT_LIKED = "NOT_LIKED";
 
 export const storeTrack = (data) => {
   return {
@@ -20,6 +21,12 @@ export const search = (data) => {
 export const isLiked = (data) => {
   return {
     type: LIKED,
+    payload: data,
+  };
+};
+export const isNotLiked = (data) => {
+  return {
+    type: NOT_LIKED,
     payload: data,
   };
 };

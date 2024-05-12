@@ -1,4 +1,4 @@
-import { GET_MUSIC_HIP_POP, GET_MUSIC_POP, GET_MUSIC_ROCK, LIKED, TRACK } from "../actions";
+import { GET_MUSIC_HIP_POP, GET_MUSIC_POP, GET_MUSIC_ROCK, LIKED, TRACK, NOT_LIKED } from "../actions";
 
 const initialState = {
   rock: [],
@@ -39,6 +39,11 @@ const MainPageReducer = (state = initialState, action) => {
       return {
         ...state,
         liked: [...state.liked, action.payload],
+      };
+    case NOT_LIKED:
+      return {
+        ...state,
+        liked: [state.liked.slice(0, action.payload), state.liked.slice(action.payload + 1)],
       };
     default:
       return {

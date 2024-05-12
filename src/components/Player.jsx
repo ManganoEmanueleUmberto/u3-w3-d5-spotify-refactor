@@ -1,19 +1,19 @@
 import { Col, Container, Image, NavLink, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { canRender } from "./SongCard";
-import { isLiked } from "../redux/actions";
-import { useEffect } from "react";
+import { isLiked, isNotLiked } from "../redux/actions";
 
 const Player = () => {
   const song = useSelector((state) => state.mainPage.singleTrack);
   const liked = useSelector((state) => state.mainPage.liked);
   let like = false;
-  console.log(liked);
+  let index = 0;
 
-  liked.map((songLike) => {
+  liked.map((songLike, i) => {
     console.log(songLike);
     if (songLike === song.title_short) {
       like = true;
+      index = i;
     }
     return like;
   });
@@ -34,7 +34,7 @@ const Player = () => {
             <i
               class="bi bi-heart-fill text-secondary fs-5 ms-5 my-auto "
               onClick={() => {
-                dispatch(isLiked(song.title_short));
+                dispatch(isNotLiked(index));
               }}
             ></i>
           ) : (
